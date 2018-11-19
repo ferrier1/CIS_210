@@ -7,18 +7,16 @@ VOWELS = "aeiou"
 
 
 def alphacode(pin):
+    letters = []
     while pin > 0:
         x = pin % 100
-        #print(x)
-        #print("----")
         vowel = VOWELS[x % 5]
-        print(vowel)
-        #print("----")
         cons = CONSONANTS[x // 5]
-        print(cons)
-        #print("----")
         pin = pin // 100
-        #print("----")
+        letters.extend((vowel, cons))
+    letters.reverse()
+    return ''.join(letters)
+
 
 
 
@@ -30,6 +28,7 @@ def main():
     pin = args.PIN
 
     memorable = alphacode(pin)
+    print("Memorable PIN:", memorable)
 
 
 
