@@ -19,13 +19,20 @@ def alphacode(pin):
 
 
 def strcode(word):
+    raw_list = []
     for letter in word:
         vlist = list(VOWELS)
         clist = list(CONSONANTS)
         if letter in vlist:
-            print(vlist.index(letter))
+            v = vlist.index(letter)
+            raw_list.append(v)
         else:
-            print(clist.index(letter) % 10)
+            c = clist.index(letter)
+            raw_list.append(c)
+    x = ''.join(str(digit) for digit in raw_list)
+    y = int(x)
+
+
 
 
 
@@ -45,7 +52,6 @@ def main():
         strcode(word)
     else:
         print("invalid input")
-
 
 
 
