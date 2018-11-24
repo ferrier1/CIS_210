@@ -1,4 +1,5 @@
 import argparse
+import numpy
 
 ## Constants used by this program
 CONSONANTS = "bcdfghjklmnpqrstvwyz"
@@ -30,25 +31,15 @@ def strcode(word):
         else:
             c = clist.index(letter)
             raw_list.append(c)
-    x = ''.join(str(digit) for digit in raw_list)
-    y = int(x)
-    while y > 0:
-        n = y % 100
-        y = y // 100
-        l = list(str(n))
-        #print(l)
-        for x in l[0]:
-            mod1 = int(x) * 5
-            try:
-                mod2 += mod1 + int(l[1])
-            except IndexError as error:
-                break
-    print(mod2)
-
-
-
-
-
+    if len(raw_list) % 2 != 0:
+        [0] + raw_list
+    raw_join = ''.join(str(digit) for digit in raw_list)
+    n = len(raw_list) // 2
+    l = numpy.array_split(raw_list, n)
+    for grp in l:
+        x = grp[0] * 5 + grp[1]
+        fin_list.append(x)
+    return ''.join(str(digit) for digit in fin_list)
 
 
 
@@ -67,7 +58,7 @@ def main():
         memorable = alphacode(pin)
         print("Memorable PIN:", memorable)
     elif word != None:
-        strcode(word)
+        print("Decoded PIN:", strcode(word))
     else:
         print("invalid input")
 
