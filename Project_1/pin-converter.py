@@ -20,6 +20,7 @@ def alphacode(pin):
 
 def strcode(word):
     raw_list = []
+    fin_list = []
     for letter in word:
         vlist = list(VOWELS)
         clist = list(CONSONANTS)
@@ -31,6 +32,23 @@ def strcode(word):
             raw_list.append(c)
     x = ''.join(str(digit) for digit in raw_list)
     y = int(x)
+    while y > 0:
+        n = y % 100
+        y = y // 100
+        l = list(str(n))
+        #print(l)
+        for x in l[0]:
+            mod1 = int(x) * 5
+            try:
+                mod2 += mod1 + int(l[1])
+            except IndexError as error:
+                break
+    print(mod2)
+
+
+
+
+
 
 
 
